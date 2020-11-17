@@ -1,0 +1,30 @@
+stages:
+  scrape_data:
+    cmd: python ./src/c_learner/config/arti_scrap.py
+    deps:
+    - ./src/c_learner/config/arti_scrap.py
+    outs:
+    - arti_scrap.csv
+  pre_processing:
+    cmd: python ./src/c_learner/data_preprocess.py
+    deps:
+    - ./src/c_learner/data_preprocess.py
+    - arti_scrap.csv
+    outs:
+    - arti_scrap.csv
+  drift_detection:
+    cmd: python ./src/c_learner/data_drift.py
+    deps:
+    - ./src/c_learner/data_drift.py
+    # - arti_scrap.csv
+    # - arti_scrap.csv
+    outs:
+    - #arti_scrap.csv
+  continuous_learner:
+    cmd: python ./src/longformer_model/cont_learner.py
+    deps:
+    - ./src/longformer_model/cont_learner.py
+    # - arti_scrap.csv
+    # - arti_scrap.csv
+    outs:
+    - #arti_scrap.csv
