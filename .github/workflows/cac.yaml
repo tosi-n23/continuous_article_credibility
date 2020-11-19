@@ -1,0 +1,23 @@
+name: continuous-article-credibility
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: cml_run
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          python ./src/longformer_model/cont_learner.py
+
+          echo "MODEL METRICS"
+          cat ./src/longformer_model/models/base_model/eval_results.txt
+
+          # # Write your CML report
+          # cat results.txt >> report.md
+          # cml-send-comment report.md

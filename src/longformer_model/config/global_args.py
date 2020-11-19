@@ -2,8 +2,8 @@ from multiprocessing import cpu_count
 
 
 global_args = {
-    "output_dir": "outputs",
-    "best_model_dir": "outputs/best_model",
+    "output_dir": "./src/longformer_model/models/outputs",
+    "best_model_dir": "./src/longformer_model/models/base_model",
     "cache_dir": "cache_dir/",
     "config": {},
     "fp16": True, #False
