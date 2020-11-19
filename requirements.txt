@@ -1,3 +1,4 @@
+cython
 dvc==1.1.10
 Flask==1.1.2
 joblib==0.15.1
