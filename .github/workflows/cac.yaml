@@ -11,13 +11,22 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
 
+          # # Write your CML report
+          # echo "## Data Drift Viz" > report.md
+          # cml-publish image.png --md >> report.md
+
           # Your ML workflow goes here
-          pip install -r requirements.txt
-          python ./src/longformer_model/cont_learner.py
+          pip3 install -r requirements.txt
+          # dvc repro
+          # git fetch --prune
+          # dvc metrics diff --show-md master > report.md
+          python3 ./src/longformer_model/cont_learner.py
 
           echo "MODEL METRICS"
           cat ./src/longformer_model/models/base_model/eval_results.txt
 
           # # Write your CML report
+          # echo "## Model Metrics" > report.md
           # cat results.txt >> report.md
           # cml-send-comment report.md
+

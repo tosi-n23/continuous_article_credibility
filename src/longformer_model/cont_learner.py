@@ -25,7 +25,7 @@ fullset = pd.read_csv('gs://fake_news_corpus11/lonformer_cred_cls/data/cat_feat_
 
 train_df, eval_df = train_test_split(fullset, test_size=0.07, random_state=123, shuffle=True)
 
-model = ClassificationModel(model_type='longformer', model_name='allenai/longformer-base-4096', num_labels=10, use_cuda=True, args={'num_train_epochs': 1, 'reprocess_input_data': True, 'overwrite_output_dir': True})
+model = ClassificationModel(model_type='roberta', model_name='distilroberta-base', num_labels=10, use_cuda=True, args={'num_train_epochs': 1, 'reprocess_input_data': True, 'overwrite_output_dir': True})
 
 # Train the model
 model.train_model(train_df = train_df, eval_df= eval_df, show_running_loss=True)

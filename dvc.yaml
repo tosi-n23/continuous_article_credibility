@@ -19,7 +19,7 @@ stages:
     # - arti_scrap.csv
     # - arti_scrap.csv
     outs:
-    - #arti_scrap.csv
+    - arti_scrap.csv
   continuous_learner:
     cmd: python ./src/longformer_model/cont_learner.py
     deps:
@@ -27,4 +27,7 @@ stages:
     # - arti_scrap.csv
     # - arti_scrap.csv
     outs:
-    - #arti_scrap.csv
+    - arti_scrap.csv
+    metrics:
+    - metrics.json:
+        cache: false
