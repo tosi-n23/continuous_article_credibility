@@ -2,7 +2,7 @@ name: continuous-article-credibility
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted,cml,gpu]
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
@@ -11,22 +11,27 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
 
-          # # Write your CML report
-          # echo "## Data Drift Viz" > report.md
-          # cml-publish image.png --md >> report.md
+          CODEBLOCK="\`\`\`"
+          echo $CODEBLOCK > report.md
+          nvidia-smi >> report.md
+          echo $CODEBLOCK > report.md
 
-          # Your ML workflow goes here
-          pip install -r requirements.txt
-          # dvc repro
-          # git fetch --prune
-          # dvc metrics diff --show-md master > report.md
-          python ./src/longformer_model/cont_learner.py
+          # # # Write your CML report
+          # # echo "## Data Drift Viz" > report.md
+          # # cml-publish image.png --md >> report.md
 
-          echo "MODEL METRICS"
-          cat ./src/longformer_model/models/base_model/eval_results.txt
+          # # Your ML workflow goes here
+          # pip install -r requirements.txt
+          # # dvc repro
+          # # git fetch --prune
+          # # dvc metrics diff --show-md master > report.md
+          # python ./src/longformer_model/cont_learner.py
 
-          # # Write your CML report
-          # echo "## Model Metrics" > report.md
-          # cat results.txt >> report.md
-          # cml-send-comment report.md
+          # echo "MODEL METRICS"
+          # cat ./src/longformer_model/models/base_model/eval_results.txt
+
+          # # # Write your CML report
+          # # echo "## Model Metrics" > report.md
+          # # cat results.txt >> report.md
+          cml-send-comment report.md
 
