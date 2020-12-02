@@ -17,3 +17,4 @@ experiment/
 /src/longformer_model/opinion_phrases/
 /src/longformer_model/sentence_segmentation/
 /arti_scrap.csv
+/key.json
